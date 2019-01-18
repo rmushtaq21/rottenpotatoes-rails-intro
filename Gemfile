@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
@@ -56,4 +56,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-
+group :development do
+  gem 'guard-livereload', '~> 2.5', require: false
+end
