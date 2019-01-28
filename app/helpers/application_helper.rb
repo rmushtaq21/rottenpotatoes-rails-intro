@@ -21,6 +21,5 @@ module ApplicationHelper
       end
     end
     @movies = movies
-    @checked_ratings = @all_ratings & ratings
   end
 end

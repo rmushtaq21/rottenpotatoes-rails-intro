@@ -17,8 +17,10 @@ class MoviesController < ApplicationController
     if params.has_key?(:ratings) == false
       return
     end
-    if params[:commit] == 'Refresh'
+    if params[:commit] == 'Refresh' && params[:ratings]
       selected_ratings(params[:ratings].keys)
+      @checked_ratings = Array.new
+      @checked_ratings = @all_ratings & params[:ratings].keys
     end
   end
 
