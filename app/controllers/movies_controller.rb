@@ -12,7 +12,14 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.uniq.pluck(:rating)
     @movies = Movie.order(params[:sort])
+    if params.has_key?(:ratings) == false
+      return
+    end
+    if params[:commit] == 'Refresh'
+      selected_ratings(params[:ratings].keys)
+    end
   end
 
   def new
