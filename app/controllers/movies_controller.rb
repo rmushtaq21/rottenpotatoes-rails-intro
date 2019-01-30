@@ -13,14 +13,15 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.uniq.pluck(:rating)
-    @movies = Movie.order(params[:sort])
-    if params.has_key?(:ratings) == false
-      return
+    if params[:sort] != session[:sort]
+      session[:sort] = params[:sort]
     end
-    if params[:commit] == 'Refresh' && params[:ratings]
-      selected_ratings(params[:ratings].keys)
-      @checked_ratings = Array.new
-      @checked_ratings = @all_ratings & params[:ratings].keys
+    @movies = Movie.order(session[:sort])
+    if params.has_key?(:ratings) == false
+      selected_ratings(session[:ratings].keys)
+    elsif params[:ratings].keys != session[:ratings]
+      session[:ratings] = params[:ratings]
+      selected_ratings(session[:ratings].keys)
     end
   end
 
