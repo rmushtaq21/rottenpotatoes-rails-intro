@@ -8,7 +8,6 @@ module ApplicationHelper
   end
 
   def selected_ratings(ratings)
-    puts "sessions are ===> #{session.keys}"
     # unchecked boxes are not sent to the server
     @rated_movies = Array.new
     # list of user's selected rating movies
